@@ -1,5 +1,108 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-home page
+   <style>
+    .top {
+        position: relative;
+        display: flex;
+        flex-wrap:wrap;
+        width: 100%;
+        height: 450px;
+    }
+    .top::before {
+        content: "";
+        background-image: url("{% static 'images/about-us-1.jpg' %}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        opacity: 0.7;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+   </style>
+    <main>
+        <section class="top">
+           <div class="top-main">
+              <div class="top-heading">
+                <div class="top-heading-name">
+                  <p class="joan-regular heading-name">{{ welcome_heading }} <span>{{ welcome_heading_2 }}</span> <br>{{ welcome_subheading }}</p>
+                </div>
+                <div class="top-heading-buttons">
+                   <div class="register-btn">
+                       <button type="button"  class="joan-regular" onclick="window.location.href='{% comment "" %}{% url 'accounts:user_registration' %}{% endcomment %}'">{{ register_button }}</button>
+                   </div>
+                   <div class="login-btn ">
+                       <button type="button" class="joan-regular" onclick="window.location.href='{% comment "" %}{% url 'accounts:user_registration' %}{% endcomment %}'">{{ login_button }}</button>
+                   </div>
+                </div>
+              </div>
+           </div>
+        </section>
+        <section class="video-about">
+            <div class="about-us-more">
+                <div class="about-us-more-cont">
+                    <div class="about-us-more-heading">
+                        <p class="joan-regular">{{ about_us_heading }} </p>
+                    </div>
+                    <p class="joan-regular">{{ about_us_description }}</p>
+                    <a href="{% comment "" %}{% url "about_us" %}{% endcomment %}"><button type="button" class="joan-regular">{{ know_more_button }}</button></a>
+                </div>
+                <div class="about-us-more-video">
+                    <video class="video-dim" controls><source src="{% static "images/V04.mp4"%}" type="video/mp4"></video>
+                </div>
+            </div>
+        </section>
+        <br>
+        <section class="services">
+            <div class="service-section">
+                <div class="service-heading">
+                    <p class="joan-regular" style="font-size:x-large;">{{ services_heading }}</p>
+                </div>
+                <div class="service-btns">
+                    <div class="f-service-btn">
+                       <div class="">
+                          <img src="{% static "images/farmer-services-img.jpg" %}" alt="" class="f-img">
+                       </div>
+                       <p>{{ farmer_service }}</p>
+                    </div>
+                    <div class="f-service-btn">
+                            <div class="">
+                               <img src="{% static "images/labour-service-img.png" %}" alt="" class="f-img">
+                            </div>
+                            <p>{{ labour_service }}</p>
+                    </div>
+                    <div class="f-service-btn">
+                            <div class="">
+                               <img src="{% static "images/government-service-img.jpg" %}" alt="" class="f-img g-img">
+                            </div>
+                            <p>{{ government_scheme_service }}</p>
+                    </div>
+                    <div class="f-service-btn">
+                            <div class="">
+                               <img src="{% static "images/shop-service-img.png" %}" alt="" class="f-img">
+                            </div>
+                            <p>{{ market_service }}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <br>
+        <br>
+        <section class="video-tut">
+            <div class="video-t">
+              <div class="video-t-heading">
+                <p class="joan-regular" style="font-size:x-large;">{{ video_tutorials_heading }}</p>
+                <div class="video-tut-btn">
+                    <button type="button" class="joan-regular" onclick="window.location.href='{% comment "" %}{% url 'video_home' %}{% endcomment %}'">{{ go_to_videos_button }}</button>
+                </div>
+              </div>
+              <div class="video-tut-img">
+                 <img src="{% static "images/video-tut.png" %}" alt="" style="width:400px;">
+              </div>
+            </div>
+        </section>
+    </main>
 {% endblock content %}

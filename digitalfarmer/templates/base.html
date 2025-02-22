@@ -2,68 +2,175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static "css/style.css" %}">
-    <link rel="manifest" href="{% static "manifest.json" %}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Document</title>
+  <link rel="stylesheet" href={% static "css/style.css" %}>
+  {% comment %} <link rel="stylesheet" href={% static "css/style1.css" %}> {% endcomment %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Joan&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Joan&family=Kavivanar&family=Quando&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Joan&family=Kaushan+Script&family=Kavivanar&family=Quando&display=swap" rel="stylesheet">
+  <link rel="manifest" href="{% static "manifest.json" %}">
+  <meta name="theme-color" content="#28a745">
 </head>
 <body>
-    <section class="header">
-        <header>
-            <div class="logo_header">
-                <div class="logo_img">
-                    <img src="" alt="">
-                </div>
-                <div class="company_name">
-                    <p></p>
-                </div>
-            </div>
-            <div class="navbar">
-                <nav>
-                    <ul>
-                        <li><a href=""><button>Home</button></a></li>
-                        <li><a href=""><button>About</button></a></li>
-                        <li><a href=""><button>Contact</button></a></li>
-                        <li><a href=""><button>FAQ</button></a></li>
-                        <li><a href=""><button>Tutorials</button></a></li>
-                        <li class="profile_icon" id="profile"><a href=""><button><img src="" alt=""></button></a></li>
-                        <li><a href=""><button>Login/Register</button></a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
+  <header class="baseHead">
+    <section class="comp-name">
+      <div class="comp-logo">
+        <img src="{% static "images/logo.png" %}" alt="" class="logo-img">
+      </div>
+      <div class="comp-name ">
+        <p class="joan-regular" style="
+    font-size: large;">Helping Hand</p>
+      </div>
     </section>
-    {% block content %}
-    
-    {% endblock content %}
-    <section class="footer">
-        <footer>
-            <div class="address">
-                <div class="logo_footer">
-                    <img src="" alt="">
-                </div>
-                <div class="address_footer">
-                    <p></p>
-                </div>
-            </div>
-            <div class="info">
-                <ul>
-                    <li><a href="">Home</a></li>
-                    <li><a href="">Conatct</a></li>
-                    <li><a href="">About</a></li>
-                    <li><a href="">Faq</a></li>
-                    <li><a href="">Tutorials</a></li>
-                </ul>
-            </div>
-            <div class="contact_footer">
-                <ul>
-                    <li><a href=""><img src="" alt=""></a></li>
-                    <li><a href=""><img src="" alt=""></a></li>
-                    <li><a href=""><img src="" alt=""></a></li>
-                </ul>
-            </div>
-        </footer>
+    <section class="navbar" id="nav-drop">
+      <a id="close-nav"><img src=" {% static "images/close.png" %}" alt="" class="close" id="close"></a>
+      <a id="menu-nav"><img src="{% static "images/menu.png" %}" alt="" class="menu"></a>
+      <nav id="nav-toggle">
+        <ul style="display:flex;align-items:center;" id="dropdown">
+          <a href=""><li class="joan-regular">Home</li></a>
+          <a href="{% comment "" %}{% url "about_us" %}{% endcomment %}"><li class="joan-regular">About us</li></a>
+          <a href=""><li class="joan-regular">FAQ</li></a>
+          <a href="{% comment "" %}{% url 'video_home'%}{% endcomment %}"><li class="joan-regular">Tutorials</li></a>
+          <a href="{% comment "" %}{% url "contact_us" %}{% endcomment %}"><li class="joan-regular">Contact Us</li></a>
+          <form id="language-form" method="post" action="{% url 'change_language' 'en' %}">
+            {% csrf_token %}
+            <select name="language" id="language-dropdown" onchange="changeLanguage(this)">
+                <option value="en" {% if request.session.language == 'en' %}selected{% endif %}>English</option>
+                <option value="mr" {% if request.session.language == 'mr' %}selected{% endif %}>Marathi</option>
+            </select>
+        </form>        
+        </ul>
+        {% if request.session.designation %}
+          {% if request.session.designation == "Farmer" %}
+              <a href="{% comment "" %}{% url "user_profile" %}{% endcomment %}"><li><img src="{% static "images/user_profile.png" %}" alt=""></li></a>
+          {% elif request.session.designation == "Labour" %}
+              <a href="{% comment "" %}{% url "labor_panel:labour_profile" %}{% endcomment %}"><li><img src="{% static "images/user_profile.png" %}" alt=""></li></a>
+          {% endif %}
+        <a href="{% comment "" %}{% url 'accounts:user_logout' %}{% endcomment %}">
+            <li class="joan-regular"><button type="button">Logout</button></li>
+        </a>
+        <a href="{% comment "" %}{% url 'pending_requests' %}{% endcomment %}"><li class="joan-regular"><button>View Pending Requests</button></li></a>
+        {% else %}
+        <a href="{% comment "" %}{% url 'accounts:user_login' %}{% endcomment %}"><li class="joan-regular"><button type="button">Login/Register</button></li></a>
+        {% endif %}
+      </nav>
     </section>
+  </header>
+  {% block content %}
+  {% endblock  %}
+  <footer class='bg-footer'>
+    <div class="footer_comapny_name">
+        <div class="logo-footer" style="display:flex; flex-direction:row">
+            <img src="{% static 'images/logo.png' %}" alt="comapny_logo" style = " width:80px;">
+            <p>Helping Hand</p>
+        </div>
+        <div class="address">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro fugiat sit eos ex debitis totam</div>
+    </div>
+    <div class="easy_nav">
+      <div class="home_nav">
+        <ul class="footer-nav">
+            <li><a href="">Home</a></li>
+            <li><a href="">Government Scheme</a></li>
+            <li><a href="">Sell Product</a></li>
+            <li><a href="">Labour Help</a></li>
+            <li><a href="">Krushi Kendr</a></li>
+            <li><a href="">Crop disease detection</a></li>
+            <li><a href="">Tractors on rent</a></li>
+        </ul>
+      </div>
+      <div class="about_nav">
+        <ul  class="footer-nav">
+            <li><a href="">About us</a></li>
+            <li><a href="">FAQ'S</a></li>
+            <li><a href="">Terms and conditions</a></li>
+        </ul>
+      </div>
+      <div class="contact_nav">
+        <ul  class="footer-nav">
+            <li><a href="">contact us at </a><p></p></li>
+            <li><a href="">Email : helpinghand@gmail.com</a><p></p></li>
+            <li><a href="">telephone : 9168040749</a><p></p></li>
+        </ul>
+      </div>
+      <div class="social_nav">
+        <ul class="footer-nav">
+            <li><a href=""><img src="{% static "images/mail.png" %}" alt=""></a></li>
+            <li><a href=""><img src="{% static "images/linkedin.png" %}" alt=""></a></li>
+            <li><a href=""><img src="{% static "images/" %}" alt=""></a></li>
+        </ul>
+      </div>
+    </div>
+</footer>
+{% block extra_js %}{% endblock extra_js %}
+<script>
+  function changeLanguage(selectElement) {
+      const form = document.getElementById('language-form');
+      const selectedLang = selectElement.value;
+
+      // Update the form's action URL dynamically
+      form.action = `{% url 'change_language' 'en' %}`.replace('en', selectedLang);
+
+      // Submit the form
+      form.submit();
+  }
+
+  const toogleBtn = document.getElementById("menu-nav");
+  const closeBtn = document.getElementById("close")
+  const closeNavBtn = document.getElementById("close-nav")
+  const navLinks = document.getElementById("nav-toggle");
+  const dropdown = document.getElementById("dropdown");
+  const nav = document.getElementById("nav-drop");
+  const header = document.querySelector(".baseHead")
+
+  toogleBtn.addEventListener("click" , function(){
+    closeNavBtn.classList.toggle("close-nav")
+    nav.classList.toggle("drop")
+    navLinks.classList.toggle("active");
+    dropdown.classList.toggle("dropdown");
+    toogleBtn.style.display = "none";
+    closeBtn.style.display = "flex";
+    header.style.display = "flex";
+    header.style.flexDirection ="column"
+  });
+
+  closeBtn.addEventListener("click",function(){
+    closeNavBtn.classList.remove("close-nav");
+    nav.classList.remove("drop");
+    navLinks.classList.remove("active");
+    dropdown.classList.remove("dropdown");
+    toogleBtn.style.display = "flex";
+    closeBtn.style.display = "none";
+    header.style.display = "";
+    header.style.flexDirection = "";
+  })
+  window.addEventListener("resize", function () {
+    if (window.innerWidth > 900) {
+        navLinks.classList.remove("active"); // Ensure nav is visible on large screens
+        nav.classList.remove("drop");
+        closeNavBtn.classList.remove("close-nav")
+        dropdown.classList.remove("dropdown");
+        closeBtn.style.display = "none"; // Hide close button
+        header.style.display = "flex"; // Reset to default
+        header.style.flexDirection = "row"; // Reset to default
+    }
+});
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/static/service-worker.js")
+      .then((registration) => {
+          console.log("Service Worker registered with scope:", registration.scope);
+      })
+      .catch((error) => {
+          console.log("Service Worker registration failed:", error);
+      });
+}
+</script>
+
 </body>
 </html>
