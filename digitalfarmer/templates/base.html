@@ -9,6 +9,61 @@
     <link rel="manifest" href="{% static "manifest.json" %}">
 </head>
 <body>
+    <section class="header">
+        <header>
+            <div class="logo_header">
+                <div class="logo_img">
+                    <img src="" alt="">
+                </div>
+                <div class="company_name">
+                    <p></p>
+                </div>
+            </div>
+            <div class="navbar">
+                <nav>
+                    <ul>
+                        <li><a href=""><button>Home</button></a></li>
+                        <li><a href=""><button>About</button></a></li>
+                        <li><a href=""><button>Contact</button></a></li>
+                        <li><a href=""><button>FAQ</button></a></li>
+                        <li><a href=""><button>Tutorials</button></a></li>
+                        <li class="profile_icon" id="profile"><a href=""><button><img src="" alt=""></button></a></li>
+                        <li><a href=""><button>Login/Register</button></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    </section>
+    {% block content %}
     
+    {% endblock content %}
+    <section class="footer">
+        <footer>
+            <div class="address">
+                <div class="logo_footer">
+                    <img src="" alt="">
+                </div>
+                <div class="address_footer">
+                    <p></p>
+                </div>
+            </div>
+            <div class="info">
+                <ul>
+                    <li><a href="">Home</a></li>
+                    <li><a href="">Conatct</a></li>
+                    <li><a href="">About</a></li>
+                    <li><a href="">Faq</a></li>
+                    <li><a href="">Tutorials</a></li>
+                </ul>
+            </div>
+            <div class="contact_footer">
+                <ul>
+                    <li><a href=""><img src="" alt=""></a></li>
+                    <li><a href=""><img src="" alt=""></a></li>
+                    <li><a href=""><img src="" alt=""></a></li>
+                </ul>
+            </div>
+        </footer>
+    </section>
 </body>
 </html>
