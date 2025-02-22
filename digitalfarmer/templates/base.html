@@ -53,12 +53,12 @@
           {% elif request.session.designation == "Labour" %}
               <a href="{% comment "" %}{% url "labor_panel:labour_profile" %}{% endcomment %}"><li><img src="{% static "images/user_profile.png" %}" alt=""></li></a>
           {% endif %}
-        <a href="{% comment "" %}{% url 'accounts:user_logout' %}{% endcomment %}">
+        <a href="{% url 'accounts:user_logout' %}">
             <li class="joan-regular"><button type="button">Logout</button></li>
         </a>
         <a href="{% comment "" %}{% url 'pending_requests' %}{% endcomment %}"><li class="joan-regular"><button>View Pending Requests</button></li></a>
         {% else %}
-        <a href="{% comment "" %}{% url 'accounts:user_login' %}{% endcomment %}"><li class="joan-regular"><button type="button">Login/Register</button></li></a>
+        <a href="{% url 'accounts:user_login' %}"><li class="joan-regular"><button type="button">Login/Register</button></li></a>
         {% endif %}
       </nav>
     </section>

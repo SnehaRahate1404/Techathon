@@ -27,4 +27,5 @@ urlpatterns = [
      path('', homepage , name="home"),
      path('farmer_home/' , farmer_home , name="farmer_home"),
      path('change_language/<str:lang>/', change_language, name='change_language'),
+     path("accounts/",include(('accounts.urls','accounts') ,namespace='accounts')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

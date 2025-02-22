@@ -1,2 +1,61 @@
-{% extends "base.html" %}
-{% load static %}
+{% extends 'base.html' %}
+{% load static%}
+{% block content%}
+
+      {% comment %} weather details
+      <h1>Weather Details for Mangrul Village, Yavatmal, Maharashtra</h1>
+
+        <!-- Input for Latitude and Longitude -->
+        Latitude: <input type="text" id="latitude" value="19.7536" readonly /><br>
+        Longitude: <input type="text" id="longitude" value="78.0154" readonly /><br>
+
+        <!-- Button to get weather -->
+        <button onclick="getWeather()">Get Weather</button>
+
+        <!-- Display the weather details -->
+        <div id="weather">
+            <p>Weather: <span id="weather-description"></span></p>
+            <p>Temperature: <span id="temperature"></span>°C</p>
+            <p>Humidity: <span id="humidity"></span>%</p>
+            <p>Wind Speed: <span id="wind-speed"></span> km/h</p>
+        </div> {% endcomment %}
+       
+      <div class="farmer-main">
+          <div class="image"></div>
+          <div class="intro-farmer">
+            <b><p class="joan-regular">"Your Partner in Sustainable Agriculture"</p></b>
+          </div>
+      </div>
+      <div class="highlights">
+          <div class="highlight-card">
+              <img src="{% static "images/government-service-img.jpg" %}" alt="">
+              <p>Government Schemes</p>
+              <a href=""><button>Explore</button></a>
+          </div>
+          <div class="highlight-card">
+              <img src="{% static "images/equipment-service-img.png" %}" alt="">
+              <p>Appliances</p>
+              <a href=""><button>Explore</button></a>
+          </div>
+          <div class="highlight-card">
+              <img src="{% static "images/farmer-feature-crop.jpg" %}" alt="">
+              <p>Crop disease</p>
+              <a href=""><button>Explore</button></a>
+          </div>
+          <div class="highlight-card">
+            <img src="{% static "images/labour-connect.jpg" %}" alt="">
+            <p>Labour Connect</p>
+            <a href=""><button>Explore</button></a>
+          </div>
+          <div class="highlight-card">
+            <img src="{% static "images/farmer-feature-market.jpg" %}" alt="">
+            <p>Market Analysis</p>
+            <a href=""><button>Explore</button></a>
+          </div>
+          <div class="highlight-card">
+            <img src="{% static "images/shop-service-img.png" %}" alt="">
+            <p>Krushi Kendr</p>
+            <a href=""><button>Explore</button></a>
+          </div>
+      </div>
+{% endblock content %}
