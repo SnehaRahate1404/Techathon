@@ -1,0 +1,146 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register-page</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .bg-img{
+        background-image:url("{% static 'images/about-us-2.jpg' %}");
+        background-repeat:no-repeat;
+        background-size:cover;
+        opacity:0.5;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100%;
+        z-index: -1;
+        overflow:hidden;
+    }
+    .form-container {
+        border-radius: 8px;
+        width: 350px;
+        display: flex;
+        flex-direction: column;
+        z-index:1;
+        position:absolute;
+    }
+
+    .form-container h2 {
+        text-align: center;
+        margin-bottom: 1em;
+        font-size: 1.5em;
+        color: white;
+    }
+
+    label {
+        margin: 0.5em 0 0.2em;
+        color: white;
+        font-size: 1em;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="password"],
+    select {
+        width: 80%;
+        padding: 0.7em;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 1em;
+        font-size: 1em;
+        background-color: #f9f9f9;
+    }
+
+    input:focus, select:focus {
+        border-color: #5a9;
+        background-color: #fff;
+    }
+
+    button{
+        background-color:rgb(132, 211, 76);
+        border: none;
+        padding: 15px;
+        width: 120px;
+        border-radius: 25px;
+        color: white;
+        font-size: medium;
+    }
+
+    button:hover {
+        background-color: #b7ef8c;
+    }
+
+    select {
+        cursor: pointer;
+    }
+
+    @media (max-width: 500px) {
+        .form-container {
+            width: 90%;
+        }
+    }
+     form{
+        background-color:rgba(0,0,0,0.5);
+        box-shadow:2px 2px 30px grey;
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    .register-btn-cont{
+        text-align:center;
+    }
+</style>
+<body>
+    <div class="bg-img"></div>
+    <div class="form-container">
+        <form action="#" method="POST">
+            {% csrf_token %}
+            <h2>Register</h2>
+            <label for="name">Name:</label>
+            <input type="text" id="name" placeholder="Enter your name" name="name">
+    
+            <label for="phone">Phone/Mobile number:</label>
+            <input type="number" id="phone" placeholder="Enter your mobile number" name="phone">
+    
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="eg: someone@gmail.com" name="email">
+    
+            <label for="identity">Designation / Who are you:</label>
+            <select id="identity" name="identity">
+                <option value="select" disabled selected>Select</option>
+                <option value="Farmer">Farmer</option>
+                <option value="Labour">Labour</option>
+                <option value="Krushi Kendra">Krushi Kendra</option>
+                <option value="gov_clerk">Government Clerk</option>
+                <option value="Market_clerk">Market Clerk</option>
+            </select>
+    
+            <label for="Location">City/Village:</label>
+            <input type="text" id="Location" placeholder="Enter your city or village name" name="location">
+    
+            <label for="pass">Create Password:</label>
+            <input type="password" id="pass" placeholder="Create password" name="pass">
+            
+            <div class="register-btn-cont">
+                <button type="submit">Register</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
