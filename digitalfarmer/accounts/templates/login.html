@@ -1,0 +1,124 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Login</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .bg-img{
+        background-image:url("{% static 'images/about-us-2.jpg' %}");
+        background-repeat:no-repeat;
+        background-size:cover;
+        opacity:0.5;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100%;
+        z-index: -1;
+        overflow:hidden;
+    }
+
+    .login-container {
+        padding: 2em;
+        border-radius: 10px;
+        width: 350px;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+    }
+
+    .login-container h2 {
+        text-align: center;
+        margin-bottom: 1em;
+        font-size: 1.5em;
+        color: white;
+    }
+
+    label {
+        margin-top: 0.5em;
+        margin-bottom: 0.2em;
+        color: white;
+        font-size: 1em;
+    }
+
+    input[type="number"],
+    input[type="password"] {
+        width: 80%;
+        padding: 0.7em;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 1.5em;
+        font-size: 1em;
+        background-color: #f9f9f9;
+    }
+
+    input:focus {
+        border-color: #5a9;
+        background-color: #fff;
+    }
+    button{
+        background-color:rgb(132, 211, 76);
+        border: none;
+        padding: 15px;
+        width: 120px;
+        border-radius: 25px;
+        color: white;
+        font-size: medium;
+    }
+
+    button:hover {
+        background-color: #b7ef8c;
+    }
+
+    @media (max-width: 500px) {
+        .login-container {
+            width: 90%;
+        }
+    }
+
+    form{
+        background-color:rgba(0,0,0,0.5);
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow:2px 2px 30px grey;
+    }
+</style>
+<body>
+    <div class="bg-img"></div>
+    <div class="login-container">
+        
+        <form action="{% url 'accounts:user_login' %}" method= "POST">
+            {% csrf_token %}
+            <h2>Login</h2>
+            <label for="mobile">Enter Registered Mobile Number:</label>
+            <input type="number" id="mobile" placeholder="Registered mobile number" name="mobile">
+    
+            <label for="pass">Password:</label>
+            <input type="password" id="pass" placeholder="Enter your password" name="pass">
+    
+            <button type="submit">Login</button>
+            <p>Don't have account?  <a href="{% url "accounts:user_registration"%}"><button type="button">Register</button></a></p>
+            {% if error %}
+            <p style="color:red;">{{ error }}</p>
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>
