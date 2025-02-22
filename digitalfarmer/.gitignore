@@ -1,0 +1,28 @@
+# Ignore Python cache and compiled files
+__pycache__/
+*.py[cod]
+
+myenv/
+migrations/
+# Ignore migrations except __init__.py
+/digital_farmer/migrations/*
+!/digital_farmer/migrations/__init__.py
+
+/gov_clerk_panel/migrations/*
+!/gov_clerk_panel/migrations/__init__.py
+
+/government_schemes/migrations/*
+!/government_schemes/migrations/__init__.py
+
+/krushi_kendr_panel/migrations/*
+!/krushi_kendr_panel/migrations/__init__.py
+
+/labor_panel/migrations/*
+!/labor_panel/migrations/__init__.py
+
+/market_panel/migrations/*
+!/market_panel/migrations/__init__.py
+# Ignore environment files
+.env
+*.sqlite3
+db.sqlite3
